@@ -1,0 +1,14 @@
+<h1 class="logo">Podsicle</h1>
+<h3 class="intro">So, do you listen to podcasts?</h3>
+
+<%= link_to "Create New Post", new_post_path %>
+<section>
+  <% @posts.each do |post| %>
+    <article>
+      <a href="./posts/show.html.erb" class="title-link">
+      <h2 class="title"><%= link_to post.title, post_path(post) %></h2>
+      </a>
+      <time>Updated <%= post.updated_at %></time>
+    </article>
+  <% end %>
+</section>

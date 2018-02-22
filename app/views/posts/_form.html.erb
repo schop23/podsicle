@@ -1,0 +1,11 @@
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+  <%= f.label :review %>
+  <%= f.text_area :review %>
+  <%= f.label :podcast_url %>
+  <%= f.text_field :podcast_url %>
+  <%= f.submit %>
+<% end %>

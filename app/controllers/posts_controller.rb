@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:post)
+    params.require(:post).permit(:post, :subject, :review, :podcast_url)
   end
 
 end

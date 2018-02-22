@@ -1,0 +1,15 @@
+<h1 class="logo">Podsicle</h1>
+<h3 class="intro">So, do you listen to podcasts?</h3>
+
+<h4 class="edit">Edit Your Post</h4>
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+  <%= f.label :review %>
+  <%= f.text_area :review %>
+  <%= f.label :podcast_url %>
+  <%= f.text_field :podcast_url %>
+  <%= f.submit %>
+<% end %>
