@@ -1,40 +1,45 @@
 class CommentsController < ApplicationController
-  def index
-    @comments = Comment.all
-  end
-
-  def show
-    @comment = Comment.find(params[:id])
-  end
-
   def new
+    @post = Post.find(params[:post_id])
     @comment = Comment.new
-  end 
+  end
 
   def create
-    @comment = Comment.create!(comment_params)
-    redirect_to "/comments/#{@comment.id}"
-  end 
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(comment_params)
+    redirect_to post_path(@post)
+  end
 
   def edit
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-  end 
+  end
 
   def update
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    @comment.update(comment_params)
-    redirect_to "/comments/#{@comment.id}"
-  end 
-
-  def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to "/comments"
+    if current_user == @comment_user
+      @comment.update(comment_params)
+    else
+      flash[:alert] = "Sorry, only the user that created this comment can edit it."
+    end 
+    redirect_to post_path(@post)
   end
-
+  
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    if current_user == @comment.user
+      @comment.destroy
+    else
+      flash[:alert] = "Sorry, only the user that created this comment can delete it."
+    end
+    redirect_to post_path(@post)
+  end
+  
   private
   def comment_params
-    params.require(:comment).permit(:comment, :house_id)
+    params.require(:comment).permit(:body)
   end
-
 end
+
