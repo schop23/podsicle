@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
   <body>
   <h1 class='logo'><% link_to "Podsicle", root_path %></h1>
@@ -18,7 +19,7 @@
     <% link_to "Sign In", new_user_session_path %>
   <% else %>
     <% current_user.email %>
-    <% link_to "Log Out", destroy_user_session_path, :method => :delete %>
+    <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
   <% end %>
     <%= yield %>  
 
