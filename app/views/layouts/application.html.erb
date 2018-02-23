@@ -6,6 +6,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   </head>
   <body>
@@ -13,14 +15,19 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  
+
+  <nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1"> 
   <% if !current_user %>
     <% link_to "Sign Up", new_user_registration_path %>
     <% link_to "Sign In", new_user_session_path %>
   <% else %>
-    <% current_user.email %>
+    <%= current_user.email %>
     <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
   <% end %>
+  </span>
+</nav>
+
     <%= yield %>  
 
   </body>
