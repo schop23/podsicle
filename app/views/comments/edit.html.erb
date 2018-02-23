@@ -1,0 +1,10 @@
+<h1 class="logo"><a href="/posts">Podsicle</a></h1>
+<h3 class="intro">So, do you listen to podcasts?</h3>
+
+<h5 class="comment">Edit Comment</h5>
+
+<%= form_for @comment do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<% end %>

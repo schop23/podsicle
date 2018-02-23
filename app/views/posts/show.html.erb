@@ -1,9 +1,9 @@
-<h1 class="logo">Podsicle</h1>
+<h1 class="logo"><a href="/posts">Podsicle</a></h1>
 <h3 class="intro">So, do you listen to podcasts?</h3>
 
 <article>
   <h2 class="title"><%= @post.title %></h2>
-  <h4 class ="subject"><%= @post.subject %></h4>
+  <h5 class ="subject"><%= @post.subject %></h5>
   <time>Updated <%= @post.updated_at %></time>
   <p class="review"><%= @post.review %></p>
   <p class="url"><%= @post.podcast_url %></p>
@@ -25,11 +25,10 @@
       <p>
 	<%= comment.body %>
       </p>
-      <% if current_user == @post.user %>
+      <% if current_user == comment.user %>
       <%= link_to "Edit", edit_comment_path(@post, comment) %> |
-      <% end %>
-      <% if current_user == @post.user %>
-      <%= link_to "Delete", comment_path(@post, comment), method: :delete %>
+    
+      <%= link_to "Delete", comment_path(comment), method: :delete %>
       <% end %>
     </div>
   <% end %>

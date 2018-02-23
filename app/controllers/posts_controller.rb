@@ -16,8 +16,8 @@ class PostsController < ApplicationController
   end 
 
   def create
-    @post = current_user.posts.create(post_params)
-    redirect_to post_path(@post)
+    @post = current_user.posts.create!(post_params)
+    redirect_to "/posts/#{@post.id}"
   end
 
   def update
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     else
       flash[:alert] = "Sorry, only the user that created this post can edit it."
     end
-    redirect_to post_path(@post)
+    redirect_to "/posts/#{@post.id}"
   end
 
   def destroy
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:post, :subject, :review, :podcast_url)
+    params.require(:post).permit(:post, :title, :subject, :review, :podcast_url)
   end
 
 end
